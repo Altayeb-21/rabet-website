@@ -1,0 +1,81 @@
+
+/* Rabet v3.4 — bilingual content architecture and release-readiness fixes. */
+.footer-grid { grid-template-columns: 1.25fr .8fr .8fr !important; }
+.cta-band .btn:not(.secondary), .cta-band .btn:not(.secondary) .txt { color:#101315 !important; }
+
+/* Clear service-family architecture. */
+.offerings-grid { display:block !important; }
+.offering-family { margin:0 0 clamp(4rem,8vw,7rem); scroll-margin-top:7rem; }
+.offering-family-header { display:grid; grid-template-columns:minmax(0,.8fr) minmax(18rem,1fr); gap:2rem; align-items:end; margin-bottom:2rem; }
+.offering-family-header .lead { margin:0; }
+.offering-family-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+
+/* Override the legacy 12-column offering spans inside the new family grids. */
+body.rabet-cinematic.page-offerings .offering-family-grid {
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:1rem !important;
+}
+body.rabet-cinematic.page-offerings .offering-family-grid > .offering-card,
+body.rabet-cinematic.page-offerings .offering-family-grid > .offering-card:nth-child(n) {
+  grid-column:auto !important;
+  min-height:330px !important;
+  width:auto !important;
+}
+body.rabet-cinematic.page-offerings .offering-family-grid > .offering-card[aria-expanded="true"] {
+  grid-column:1 / -1 !important;
+  min-height:auto !important;
+}
+.training-offering-highlight { margin-top:1.25rem; padding:1.4rem 1.6rem; border:1px solid color-mix(in srgb,var(--accent) 48%,var(--line)); border-radius:var(--radius-lg,24px); background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface)); }
+.training-offering-highlight p { margin:.75rem 0 0; max-width:75ch; }
+
+/* Explicit sector identities and a deliberately dominant training block. */
+.sector-story-card { scroll-margin-top:7rem; }
+.sector-name { font-size:clamp(1.55rem,2.6vw,2.55rem); line-height:1.08; margin:0 0 .5rem; color:var(--ink); }
+.sector-outcome { font-size:clamp(1.05rem,1.5vw,1.35rem); line-height:1.35; margin:0 0 1rem; color:var(--ink-2); }
+.sector-focus-note { margin:1.4rem 0 2.5rem; padding:1.1rem 1.25rem; border-inline-start:4px solid var(--accent); background:var(--surface-2); border-radius:0 var(--radius-md,16px) var(--radius-md,16px) 0; color:var(--ink-2); line-height:1.8; }
+body.lang-ar .sector-focus-note { border-inline-start:4px solid var(--accent); border-radius:var(--radius-md,16px) 0 0 var(--radius-md,16px); }
+.sector-training-featured { grid-column:1 / -1; border-color:color-mix(in srgb,var(--accent) 60%,var(--line)) !important; box-shadow:0 28px 70px color-mix(in srgb,var(--accent) 14%,transparent); }
+.sector-training-featured .sector-media { min-height:clamp(20rem,40vw,34rem); }
+.sector-training-featured .sector-content { background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 13%,var(--surface)),var(--surface)); }
+.training-feature-badge { display:inline-flex; width:max-content; align-items:center; padding:.45rem .75rem; border-radius:999px; background:var(--accent); color:var(--on-accent,#fff); font-size:.75rem; font-weight:800; letter-spacing:.02em; margin-bottom:.85rem; }
+.training-feature-badge .txt { color:inherit !important; }
+.home-sector-card.training-feature { grid-column:span 2; min-height:24rem; border:2px solid color-mix(in srgb,var(--accent) 72%,transparent); }
+.home-sector-card.training-feature::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 25%,color-mix(in srgb,var(--accent) 33%,rgba(0,0,0,.78))); pointer-events:none; }
+.home-sector-card.training-feature > * { position:relative; z-index:2; }
+.training-feature-badge { position:relative; z-index:3; }
+
+/* Replacement for the public team placeholder. */
+.capability-card { min-height:18rem; }
+.capability-card .team-photo-placeholder { display:none; }
+.training-capability { border-color:color-mix(in srgb,var(--accent) 62%,var(--line)) !important; background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 12%,var(--surface)),var(--surface)); }
+
+/* Engagement standards / trust content. */
+.engagement-standards { border-block:1px solid var(--line); }
+.engagement-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; margin-top:2rem; }
+.engagement-card { padding:1.35rem; border:1px solid var(--line); border-radius:var(--radius-lg,24px); background:var(--surface); }
+.engagement-card > span { display:block; font-family:'Space Mono',monospace; color:var(--accent); margin-bottom:1.25rem; }
+.engagement-card h3 { margin:0 0 .75rem; font-size:1rem; }
+.engagement-card p { margin:0; }
+
+/* Grouped profile offerings and highlighted training. */
+.profile-offering-family { padding:1.4rem; border:1px solid var(--line); border-radius:var(--radius-lg,24px); background:var(--surface); }
+.profile-offering-family h3 { margin:.1rem 0 .65rem; }
+.profile-offering-family > p { margin:0 0 1rem; }
+.profile-offering-list { display:flex; flex-wrap:wrap; gap:.55rem; }
+.profile-offering-list .offering-tile { width:auto; min-height:auto; padding:.7rem .85rem; }
+.training-profile-family { border-color:color-mix(in srgb,var(--accent) 55%,var(--line)); background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface)); }
+.chip.training-chip { border-color:var(--accent); background:color-mix(in srgb,var(--accent) 14%,var(--surface)); font-weight:800; }
+a.chip { text-decoration:none; }
+
+@media (max-width:1000px) {
+  body.rabet-cinematic.page-offerings .offering-family-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .engagement-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:760px) {
+  .footer-grid { grid-template-columns:1fr !important; }
+  .offering-family-header { grid-template-columns:1fr; gap:.8rem; }
+  body.rabet-cinematic.page-offerings .offering-family-grid, .engagement-grid { grid-template-columns:1fr !important; }
+  .home-sector-card.training-feature { grid-column:auto; min-height:20rem; }
+  .sector-training-featured .sector-media { min-height:17rem; }
+}

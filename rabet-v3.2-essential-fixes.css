@@ -1,0 +1,244 @@
+/*
+  Rabet v3.2 — essential repair layer
+  Visual baseline: v3.0. This file intentionally does not redesign heroes,
+  section composition, imagery, card geometry, or dark-mode art direction.
+*/
+
+/* Component-owned contrast: prevent broad .txt rules from erasing labels. */
+body.rabet-cinematic .cta-band .cta-inner .btn:not(.secondary),
+body.rabet-cinematic .cta-band .cta-inner .btn:not(.secondary) .txt {
+  color: #101315 !important;
+}
+body.rabet-cinematic .cta-band .cta-inner .btn.secondary,
+body.rabet-cinematic .cta-band .cta-inner .btn.secondary .txt {
+  color: #fff !important;
+}
+body.rabet-cinematic .service-lab-section .service-copy .btn.secondary,
+body.rabet-cinematic .service-lab-section .service-copy .btn.secondary .txt {
+  color: #fff !important;
+  border-color: rgba(255,255,255,.68) !important;
+  background: rgba(255,255,255,.06) !important;
+}
+body.rabet-cinematic .service-lab-section .service-copy .btn.secondary:hover,
+body.rabet-cinematic .service-lab-section .service-copy .btn.secondary:focus-visible {
+  color: #071923 !important;
+  background: #fff !important;
+  border-color: #fff !important;
+}
+body.rabet-cinematic .service-lab-section .service-copy .btn.secondary:hover .txt,
+body.rabet-cinematic .service-lab-section .service-copy .btn.secondary:focus-visible .txt {
+  color: #071923 !important;
+}
+
+/* Arabic is optically calibrated as Arabic, without changing v3 scale or layout. */
+body.rabet-cinematic.lang-ar .landing-title,
+body.rabet-cinematic.lang-ar .inner-hero .title,
+body.rabet-cinematic.lang-ar .profile-hero-copy .title,
+body.rabet-cinematic.lang-ar h2.title,
+body.rabet-cinematic.lang-ar .title.small {
+  letter-spacing: 0 !important;
+  line-height: 1.06 !important;
+}
+body.rabet-cinematic.lang-ar .landing-title { max-width: 11.5ch; }
+body.rabet-cinematic.lang-ar .inner-hero .title { max-width: 14ch !important; }
+body.rabet-cinematic.lang-ar .profile-hero-copy .title { max-width: 12.5ch !important; }
+body.rabet-cinematic.lang-ar .motion-word {
+  letter-spacing: 0 !important;
+}
+@media (max-width: 760px) {
+  body.rabet-cinematic.lang-ar .landing-title,
+  body.rabet-cinematic.lang-ar .inner-hero .title,
+  body.rabet-cinematic.lang-ar .profile-hero-copy .title,
+  body.rabet-cinematic.lang-ar h2.title,
+  body.rabet-cinematic.lang-ar .title.small {
+    line-height: 1.1 !important;
+  }
+}
+
+/* Keep v3's motion distance and timing, but never blur reading content at the fold. */
+body.rabet-cinematic.js-ready .reveal {
+  filter: none !important;
+}
+body.rabet-cinematic.js-ready .reveal.in-view {
+  filter: none !important;
+}
+
+/* Roadmap image failure becomes a branded visual fallback, never raw alt text. */
+body.rabet-cinematic .road-detail-img {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 28% 28%, rgba(244,200,93,.42), transparent 30%),
+    linear-gradient(135deg, #0b2633, #123b4b 62%, #e8722a);
+}
+body.rabet-cinematic .road-detail-img::after {
+  content: "";
+  position: absolute;
+  inset: 20%;
+  z-index: -1;
+  opacity: 0;
+  background: url("assets/rabet-logo-white.png") center / contain no-repeat;
+  transition: opacity .2s ease;
+}
+body.rabet-cinematic .road-detail-img.has-image-error::after { opacity: .88; }
+body.rabet-cinematic .road-detail-img.has-image-error img { opacity: 0; }
+body.rabet-cinematic .road-detail-img img { transition: opacity .2s ease; }
+
+/* Mobile navigation: preserve the v3 header, but make the open state a real modal. */
+body.rabet-cinematic .nav-scrim {
+  display: none;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+@media (max-width: 760px) {
+  body.rabet-cinematic.nav-open {
+    overflow: hidden !important;
+    overscroll-behavior: none;
+    touch-action: none;
+  }
+  body.rabet-cinematic .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 2147483200;
+    background: rgba(3,12,17,.64);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .28s ease, visibility .28s ease;
+  }
+  body.rabet-cinematic.nav-open .nav-scrim {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  body.rabet-cinematic .site-header,
+  body.rabet-cinematic .navbar { z-index: 2147483400 !important; }
+  body.rabet-cinematic .nav-links.open,
+  body.rabet-cinematic [data-nav-links].open {
+    position: fixed !important;
+    inset: 5.7rem .75rem .75rem .75rem !important;
+    min-height: 0 !important;
+    max-height: calc(100svh - 6.45rem) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: .4rem !important;
+    padding: 1rem !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    border-radius: 28px !important;
+    transform-origin: top right;
+    animation: rabetV32MenuIn .34s var(--motion-ease) both;
+    z-index: 2147483500 !important;
+  }
+  body.rabet-cinematic.lang-en .nav-links.open,
+  body.rabet-cinematic.lang-en [data-nav-links].open { transform-origin: top left; }
+  body.rabet-cinematic .nav-links.open > a,
+  body.rabet-cinematic [data-nav-links].open > a {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    padding: .85rem 1rem !important;
+    border-radius: 14px !important;
+    font-size: 1rem !important;
+  }
+  body.rabet-cinematic .nav-links.open > a.active,
+  body.rabet-cinematic [data-nav-links].open > a.active,
+  body.rabet-cinematic .nav-links.open > a[aria-current="page"],
+  body.rabet-cinematic [data-nav-links].open > a[aria-current="page"] {
+    background: color-mix(in srgb,var(--motion-orange) 17%,transparent) !important;
+    box-shadow: inset 3px 0 0 var(--motion-orange);
+  }
+  body.rabet-cinematic.lang-ar .nav-links.open > a.active,
+  body.rabet-cinematic.lang-ar [data-nav-links].open > a.active,
+  body.rabet-cinematic.lang-ar .nav-links.open > a[aria-current="page"],
+  body.rabet-cinematic.lang-ar [data-nav-links].open > a[aria-current="page"] {
+    box-shadow: inset -3px 0 0 var(--motion-orange);
+  }
+  body.rabet-cinematic .nav-links.open > .nav-cta,
+  body.rabet-cinematic [data-nav-links].open > .nav-cta,
+  body.rabet-cinematic .nav-links.open > .nav-cta-profile,
+  body.rabet-cinematic [data-nav-links].open > .nav-cta-profile {
+    display: flex !important;
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    min-height: 50px !important;
+    margin-top: auto !important;
+    flex: 0 0 auto !important;
+    justify-content: center !important;
+    border-radius: 999px !important;
+    z-index: auto !important;
+    background: var(--motion-orange) !important;
+    border-color: var(--motion-orange) !important;
+    color: #101820 !important;
+  }
+  body.rabet-cinematic .nav-links.open > .nav-cta .txt,
+  body.rabet-cinematic [data-nav-links].open > .nav-cta .txt,
+  body.rabet-cinematic .nav-links.open > .nav-cta-profile .txt,
+  body.rabet-cinematic [data-nav-links].open > .nav-cta-profile .txt {
+    color: #101820 !important;
+  }
+}
+@keyframes rabetV32MenuIn {
+  from { opacity: 0; transform: translateY(-10px) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Defensive responsive containment without changing composition. */
+html, body { max-width: 100%; overflow-x: clip; }
+img, svg, video, canvas { max-width: 100%; }
+
+/* Reduced-motion is a complete alternate state, not a partial preference. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  html body.rabet-cinematic .reveal,
+  html body.rabet-cinematic .motion-word,
+  html body.rabet-cinematic .motion-title,
+  html body.rabet-cinematic .title-split,
+  html body.rabet-cinematic .landing-visual-panel,
+  html body.rabet-cinematic .motion-tilt,
+  html body.rabet-cinematic .btn,
+  html body.rabet-cinematic .home-sector-card,
+  html body.rabet-cinematic .offering-card,
+  html body.rabet-cinematic .sector-story-card,
+  html body.rabet-cinematic .service-flow-card,
+  html body.rabet-cinematic .cta-inner::before,
+  html body.rabet-cinematic .cta-inner::after,
+  html body.rabet-cinematic .rabet-ambient,
+  html body.rabet-cinematic .section-signal {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
+html body.rabet-cinematic.reduced-motion .reveal,
+html body.rabet-cinematic.reduced-motion .motion-word,
+html body.rabet-cinematic.reduced-motion .motion-title,
+html body.rabet-cinematic.reduced-motion .title-split,
+html body.rabet-cinematic.reduced-motion .landing-visual-panel,
+html body.rabet-cinematic.reduced-motion .motion-tilt,
+html body.rabet-cinematic.reduced-motion .btn,
+html body.rabet-cinematic.reduced-motion .home-sector-card,
+html body.rabet-cinematic.reduced-motion .offering-card,
+html body.rabet-cinematic.reduced-motion .sector-story-card,
+html body.rabet-cinematic.reduced-motion .service-flow-card,
+html body.rabet-cinematic.reduced-motion .cta-inner::before,
+html body.rabet-cinematic.reduced-motion .cta-inner::after,
+html body.rabet-cinematic.reduced-motion .rabet-ambient,
+html body.rabet-cinematic.reduced-motion .section-signal {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
